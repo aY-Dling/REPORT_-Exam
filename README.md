@@ -11,3 +11,41 @@
 如你所见，COVID-19 肺炎如何吞噬整个肺部，并且比细菌和病毒类型的肺炎更危险。
 本文，将使用深度学习和迁移学习对受 Covid-19 影响的肺部的 X 射线图像进行分类和识别。
 ## 导入库和加载数据
+    import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+import numpy as np
+import pandas as pd
+sns.set()
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import  *
+from tensorflow.keras.optimizers import Adam, SGD, RMSprop
+from tensorflow.keras.applications import DenseNet121, VGG19, ResNet50
+
+
+import PIL.Image
+import matplotlib.pyplot as mpimg
+import os
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, img_to_array
+from tensorflow.keras.preprocessing import image
+
+
+from tqdm import tqdm
+import warnings
+warnings.filterwarnings("ignore")
+
+
+from sklearn.utils import shuffle
+
+
+train_df = pd.read_csv('../input/corona hack-chest-xray dataset/Chest_xray_Corona_Metadata.csv')
+train_df.shape
+> (5910, 6)
+
+
+train_df.head(5)
+
+
+
