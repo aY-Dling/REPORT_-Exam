@@ -7,7 +7,7 @@
 ![期末截圖01](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9601.jpeg?raw=true)
 本文将使用 CoronaHack-Chest X 射线数据集。它包含胸部 X 射线图像，我们必须找到受冠状病毒影响的图像。
 我们之前谈到的 SARS-COV-2 是主要影响呼吸系统的病毒类型，因此胸部 X 射线是我们可以用来识别受影响肺部的重要成像方法之一。这是一个并排比较：
-![期末截圖02]()
+![期末截圖02](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9602.jpeg?raw=true)
 如你所见，COVID-19 肺炎如何吞噬整个肺部，并且比细菌和病毒类型的肺炎更危险。
 本文，将使用深度学习和迁移学习对受 Covid-19 影响的肺部的 X 射线图像进行分类和识别。
 ## 导入库和加载数据
@@ -41,13 +41,13 @@
     > (5910, 6)
 
     train_df.head(5)
-![期末截圖03]()
+![期末截圖03](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9603.jpeg?raw=true)
     train_df.info()
-![期末截圖04]()
+![期末截圖04](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9604.jpeg?raw=true)
 ## 處理缺失值
     missing_vals = train_df.isnull().sum()
     missing_vals.plot(kind = 'bar')
-![期末截圖05]()
+![期末截圖05](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9605.jpeg?raw=true)
     train_df.dropna(how = 'all')
     train_df.isnull().sum()
 ![期末截圖06]()
