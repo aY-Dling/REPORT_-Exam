@@ -50,22 +50,22 @@
 ![期末截圖05](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9605.jpeg?raw=true)
     train_df.dropna(how = 'all')
     train_df.isnull().sum()
-![期末截圖06]()
+![期末截圖06](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9606.jpeg?raw=true)
     train_df.fillna('unknown', inplace=True)
     train_df.isnull().sum()
-![期末截圖07]()
+![期末截圖07](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9607.jpeg?raw=true)
     train_data = train_df[train_df['Dataset_type'] == 'TRAIN']
     test_data = train_df[train_df['Dataset_type'] == 'TEST']
     assert train_data.shape[0] + test_data.shape[0] == train_df.shape[0]
     print(f"Shape of train data : {train_data.shape}")
     print(f"Shape of test data : {test_data.shape}")
     test_data.sample(10)
-![期末截圖08]()
+![期末截圖08](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9608.jpeg?raw=true)
 我們將用“unknown”填充缺失值。
     print((train_df['Label_1_Virus_category']).value_counts())
     print('--------------------------')
     print((train_df['Label_2_Virus_category']).value_counts())
-![期末截圖09]()
+![期末截圖09](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9609.jpeg?raw=true)
 因此標籤2 類別包含COVID-19案例
 ## 顯示影像
     test_img_dir = '/kaggle/input/coronahack-chest-xraydataset/Coronahack-Chest-XRay-Dataset/Coronahack-Chest-XRay-Dataset/test'
@@ -84,11 +84,11 @@
         plt.imshow(image, cmap=plt.cm.bone)
 
     plt.tight_layout()
-![期末截圖10]()
+![期末截圖10](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9610.jpeg?raw=true)
 ## 視覺化
     plt.figure(figsize=(15,10))
     sns.countplot(train_data['Label_2_Virus_category']);
-![期末截圖11]()
+![期末截圖11](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9611.jpeg?raw=true)
 ## 對於COVID-19 病例
     fig, ax = plt.subplots(4, 2, figsize=(15, 10))
 
@@ -108,7 +108,7 @@
             ax[row, 1].set_title('Histograms')
     fig.suptitle('Label 2 Virus Category = COVID-19', size=16)
     plt.show()
-![期末截圖12]()
+![期末截圖12](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9612.jpeg?raw=true)
 ## 對於正常情況
     fig, ax = plt.subplots(4, 2, figsize=(15, 10))
 
@@ -128,7 +128,7 @@
             ax[row, 1].set_title('Histograms')
     fig.suptitle('Label = NORMAL', size=16)
     plt.show()
-![期末截圖13]()
+![期末截圖13](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9613.jpeg?raw=true)
     final_train_data = train_data[(train_data['Label'] == 'Normal') | 
                                   ((train_data['Label'] == 'Pnemonia') &
                                    (train_data['Label_2_Virus_category'] == 'COVID-19'))]
