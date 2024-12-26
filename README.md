@@ -47,22 +47,27 @@
     train_df.head(5)
     
 ![期末截圖03](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9603.jpeg?raw=true)
+
     train_df.info()
     
 ![期末截圖04](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9604.jpeg?raw=true)
+
 ## 處理缺失值
     missing_vals = train_df.isnull().sum()
     missing_vals.plot(kind = 'bar')
     
 ![期末截圖05](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9605.jpeg?raw=true)
+
     train_df.dropna(how = 'all')
     train_df.isnull().sum()
     
 ![期末截圖06](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9606.jpeg?raw=true)
+
     train_df.fillna('unknown', inplace=True)
     train_df.isnull().sum()
     
 ![期末截圖07](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9607.jpeg?raw=true)
+
     train_data = train_df[train_df['Dataset_type'] == 'TRAIN']
     test_data = train_df[train_df['Dataset_type'] == 'TEST']
     assert train_data.shape[0] + test_data.shape[0] == train_df.shape[0]
@@ -71,12 +76,15 @@
     test_data.sample(10)
     
 ![期末截圖08](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9608.jpeg?raw=true)
+
 我們將用“unknown”填充缺失值。
+
     print((train_df['Label_1_Virus_category']).value_counts())
     print('--------------------------')
     print((train_df['Label_2_Virus_category']).value_counts())
     
 ![期末截圖09](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9609.jpeg?raw=true)
+
 因此標籤2 類別包含COVID-19案例
 ## 顯示影像
     test_img_dir = '/kaggle/input/coronahack-chest-xraydataset/Coronahack-Chest-XRay-Dataset/Coronahack-Chest-XRay-Dataset/test'
@@ -141,6 +149,7 @@
     fig.suptitle('Label = NORMAL', size=16)
     plt.show()
 ![期末截圖13](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9613.jpeg?raw=true)
+
     final_train_data = train_data[(train_data['Label'] == 'Normal') | 
                                   ((train_data['Label'] == 'Pnemonia') &
                                    (train_data['Label_2_Virus_category'] == 'COVID-19'))]
@@ -188,7 +197,9 @@
         i += 1
     
     plt.show();
+    
 ![期末截圖14](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9614.jpeg?raw=true)
+
     corona_df = final_train_data[final_train_data['Label_2_Virus_category'] == 'COVID-19']
     with_corona_augmented = []
 
@@ -205,7 +216,9 @@
 
     corona_df['X_ray_image_name'].apply(augment)
 注意：輸出太長，無法包含在文章中。這是其中的一小部分。
+
 ![期末截圖15](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9615.jpeg?raw=true)
+
     train_arrays = [] 
     final_train_data['X_ray_image_name'].apply(lambda x: train_arrays.append(read_img(x, (255,255), train_img_dir)))
     test_arrays = []
@@ -249,6 +262,7 @@
     # We set it to False because we don't want to mess with the pretrained weights of the model.
     base_model.trainable = False
 現在我們的遷移學習成功了！ ！
+
     for i,l in train_batches.take(1):
         pass
     base_model(i).shape
@@ -261,7 +275,9 @@
     model.add(Layers.Dropout(0.2))
     model.add(Layers.Dense(1, activation = 'sigmoid'))
     model.summary()
+    
 ![期末截圖17](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9617.jpeg?raw=true)
+
     callbacks = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)
 
 
@@ -270,14 +286,19 @@
                   metrics=['accuracy'])
 ## 預測
     model.fit(train_batches, epochs=10, validation_data=test_batches, callbacks=[callbacks])
+    
 ![期末截圖18](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9618.jpeg?raw=true)
+
     pred = model.predict_classes(np.array(test_arrays))
 
     # classification report
     from sklearn.metrics import classification_report, confusion_matrix
     print(classification_report(test_data['target'], pred.flatten()))
+    
 ![期末截圖19](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9619.jpeg?raw=true)
+
 所以正如你所看到的，預測還不錯。我們將繪製一個混淆矩陣來視覺化我們模型的表現：
+
     con_mat = confusion_matrix(test_data['target'], pred.flatten())
     plt.figure(figsize = (10,10))
     plt.title('CONFUSION MATRIX')
@@ -285,6 +306,7 @@
                 yticklabels=['Negative', 'Positive'],
                 xticklabels=['Negative', 'Positive'],
                 annot=True);
+                
 ![期末截圖20](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9620.jpeg?raw=true)
 ## 尾註
 這個資料集很有趣，學習資料科學和機器學習越多，就越覺得這個主題很有趣。如今，我們可以透過多種方式使用數據，使用數據可以挽救無數生命。
