@@ -217,7 +217,8 @@
 
 
     corona_df['X_ray_image_name'].apply(augment)
-注意：輸出太長，無法包含在文章中。這是其中的一小部分。
+## 注意：
+輸出太長，無法包含在文章中。這是其中的一小部分。
 
 ![期末截圖15](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9615.jpeg?raw=true)
 
@@ -263,7 +264,8 @@
 
     # We set it to False because we don't want to mess with the pretrained weights of the model.
     base_model.trainable = False
-現在我們的遷移學習成功了！ ！
+    
+#### 現在我們的遷移學習成功了！ ！
 
     for i,l in train_batches.take(1):
         pass
@@ -311,5 +313,6 @@
                 
 ![期末截圖20](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9620.jpeg?raw=true)
 ## 尾註
-這個資料集很有趣，學習資料科學和機器學習越多，就越覺得這個主題很有趣。如今，我們可以透過多種方式使用數據，使用數據可以挽救無數生命。
+這個資料集很有趣，學習資料科學和機器學習越多，就越覺得這個主題很有趣。
+如今，我們可以透過多種方式使用數據，使用數據可以挽救無數生命。
 
