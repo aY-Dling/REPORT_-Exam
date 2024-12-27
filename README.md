@@ -8,13 +8,15 @@
 
 ![期末截圖01](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9601.jpeg?raw=true)
 
-本文將使用CoronaHack-Chest X 光資料集。它包含胸部X 光影像，我們必須找到受冠狀病毒影響的影像。
+本文將使用CoronaHack-Chest X 光資料集。
+它包含胸部X 光影像，我們必須找到受冠狀病毒影響的影像。
 
 我們之前談到的SARS-COV-2 是主要影響呼吸系統的病毒類型，因此胸部X 光是我們可以用來識別受影響肺部的重要影像方法之一。這是一個並排比較：
 
 ![期末截圖02](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9602.jpeg?raw=true)
 
 如你所見，COVID-19 肺炎如何吞噬整個肺部，並且比細菌和病毒類型的肺炎更危險。
+
 本文，將使用深度學習和遷移學習對受Covid-19影響的肺部的X 光影像進行分類和識別。
 ## 導入庫和載入數據
     import matplotlib.pyplot as plt
@@ -217,7 +219,7 @@
 
 
     corona_df['X_ray_image_name'].apply(augment)
-## 注意：
+### 注意：
 輸出太長，無法包含在文章中。這是其中的一小部分。
 
 ![期末截圖15](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9615.jpeg?raw=true)
@@ -265,7 +267,7 @@
     # We set it to False because we don't want to mess with the pretrained weights of the model.
     base_model.trainable = False
     
-#### 現在我們的遷移學習成功了！ ！
+現在我們的遷移學習成功了！ ！
 
     for i,l in train_batches.take(1):
         pass
@@ -314,5 +316,6 @@
 ![期末截圖20](https://github.com/aY-Dling/REPORT_-Exam/blob/main/%E6%9C%9F%E6%9C%AB%E6%88%AA%E5%9C%9620.jpeg?raw=true)
 ## 尾註
 這個資料集很有趣，學習資料科學和機器學習越多，就越覺得這個主題很有趣。
+
 如今，我們可以透過多種方式使用數據，使用數據可以挽救無數生命。
 
